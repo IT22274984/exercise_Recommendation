@@ -1,5 +1,11 @@
 <img width="959" alt="Recmmendation" src="https://github.com/user-attachments/assets/c3af7ef0-c2b8-45e8-9b9d-23c1c9847feb">
+
+
+
+
 Personalized Gym Workout Recommendation System 🏋️‍♂️
+
+
 Overview
 This project is a user-friendly web-based Personalized Gym Workout Recommendation System designed to help gym members receive tailored workout plans and dietary suggestions based on their unique fitness goals and preferences. Built using Streamlit, it leverages Content-Based Filtering powered by cosine similarity for generating personalized recommendations and ensures an intuitive user interface for effortless interaction.
 
