@@ -2,19 +2,21 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.preprocessing import MinMaxScaler, LabelEncoder
+import pickle
 
 # Load dataset
-df = pd.read_excel("C:\\Users\\shant\\OneDrive\\Desktop\\gym recommendation\\gym recommendation.xlsx")  # Replace with the actual file path
+df = pd.read_excel("C:\\Users\\shant\\OneDrive\\Desktop\\Recommendation\\gym recommendation.xlsx")  # Replace with the actual file path
 
-# Step 1: Data Preprocessing
-# Encoding categorical variables
+# Initialize label encoders
 label_encoders = {}
-categorical_columns = ['Hypertension', 'Diabetes', 'Level', 'Fitness Goal', 'Fitness Type', 'Exercises', 'Equipment', 'Diet']
-
-for col in categorical_columns:
+for col in ['Fitness Goal', 'Fitness Type', 'Exercises', 'Diet']:
     le = LabelEncoder()
-    df[col] = le.fit_transform(df[col])
-    label_encoders[col] = le  # Save encoder for inverse transform if needed
+    df[col] = le.fit_transform(df[col])  # Encode column
+    label_encoders[col] = le  # Save encoder
+
+# Save DataFrame and encoders
+with open('workout_data.pkl', 'wb') as file:
+    pickle.dump((df, label_encoders), file)
 
 # Normalize numerical features
 scaler = MinMaxScaler()
@@ -66,8 +68,8 @@ def get_recommendations(user_id, cosine_sim=cosine_sim, df=df, top_n=5):
 # Optionally, save recommendations
 #recommendations.to_csv('user_recommendations.csv', index=False)
 
-import pickle
+
 
 # Save the DataFrame and cosine similarity matrix
-with open('workout_data.pkl', 'wb') as file:
-    pickle.dump((df, cosine_sim), file)
+#with open('workout_data.pkl', 'wb') as file:
+    #pickle.dump((df, cosine_sim), file)
